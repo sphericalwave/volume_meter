@@ -8,14 +8,23 @@
 
 import AVFoundation
 
+protocol AudioEngineDelegate: AnyObject {
+    func bus0(avgPower: Float)
+}
+
 class AudioEngine: AVAudioEngine
 {
     let player: AudioSource
     let rateEffect: AudioRate
+    weak var delegate: AudioEngineDelegate?
+    let notifications = NotificationCenter.default  //FIXME: Hidden Dependency
+    let vuMeter: VUMeter
+
     
-    init(player: AudioSource, rateEffect: AudioRate, codec: AVAudioFormat) {
+    init(player: AudioSource, rateEffect: AudioRate, codec: AVAudioFormat, vuMeter: VUMeter) {
         self.player = player
         self.rateEffect = rateEffect
+        self.vuMeter = vuMeter
         super.init()
         attach(player)
         //attach(rateEffect)
@@ -25,6 +34,8 @@ class AudioEngine: AVAudioEngine
         prepare()
         do { try start() }
         catch { print(error.localizedDescription) }
+        //notifications.addObserver(self, selector: #selector(connectVolumeTap), name: .didPlay, object: nil)
+        connectVolumeTap()
     }
     
     func connectVolumeTap() {
@@ -42,6 +53,10 @@ class AudioEngine: AVAudioEngine
             //                                                                                  self.pauseImageHeight)) : 0.0
             //            }
             //FIXME: Add to Meter Height
+            
+            //DispatchQueue.main.async { self.delegate?.bus0(avgPower: avgPower) }
+            
+            DispatchQueue.main.async { self.vuMeter.bus0(avgPower: avgPower) }
         }
     }
     

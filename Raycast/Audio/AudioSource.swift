@@ -52,6 +52,8 @@ class AudioSource: AVAudioPlayerNode
 //    }
     
     let audioFile: AVAudioFile
+    let notifications = NotificationCenter.default  //FIXME: Hidden Dependency
+
     
     init(audioFile: AVAudioFile) {
         self.audioFile = audioFile
@@ -59,29 +61,40 @@ class AudioSource: AVAudioPlayerNode
         //scheduleFile(audioFile, at: nil, completionHandler: nil)
     }
     
+        override func play() {
+            //displayLink?.isPaused = false
+         //   connectVolumeTap()
+    //        if needsFileScheduled {
+    //            needsFileScheduled = false
+    //            scheduleAudioFile()
+    //        }
+            scheduleFile(audioFile, at: nil, completionHandler: nil)
+            super.play()
+        }
+    
     //FIXME: - Request Current Time
-    func formatted(time: Float) -> String {
-        var secs = Int(ceil(time))
-        var hours = 0
-        var mins = 0
-        
-        if secs > TimeConstant.secsPerHour {
-            hours = secs / TimeConstant.secsPerHour
-            secs -= hours * TimeConstant.secsPerHour
-        }
-        
-        if secs > TimeConstant.secsPerMin {
-            mins = secs / TimeConstant.secsPerMin
-            secs -= mins * TimeConstant.secsPerMin
-        }
-        
-        var formattedString = ""
-        if hours > 0 {
-            formattedString = "\(String(format: "%02d", hours)):"
-        }
-        formattedString += "\(String(format: "%02d", mins)):\(String(format: "%02d", secs))"
-        return formattedString
-    }
+//    func formatted(time: Float) -> String {
+//        var secs = Int(ceil(time))
+//        var hours = 0
+//        var mins = 0
+//
+//        if secs > TimeConstant.secsPerHour {
+//            hours = secs / TimeConstant.secsPerHour
+//            secs -= hours * TimeConstant.secsPerHour
+//        }
+//
+//        if secs > TimeConstant.secsPerMin {
+//            mins = secs / TimeConstant.secsPerMin
+//            secs -= mins * TimeConstant.secsPerMin
+//        }
+//
+//        var formattedString = ""
+//        if hours > 0 {
+//            formattedString = "\(String(format: "%02d", hours)):"
+//        }
+//        formattedString += "\(String(format: "%02d", mins)):\(String(format: "%02d", secs))"
+//        return formattedString
+//    }
     
     
     
@@ -142,16 +155,7 @@ class AudioSource: AVAudioPlayerNode
         //FIXME: Update UIs maybe
     }
     
-    override func play() {
-        //displayLink?.isPaused = false
-     //   connectVolumeTap()
-//        if needsFileScheduled {
-//            needsFileScheduled = false
-//            scheduleAudioFile()
-//        }
-        scheduleFile(audioFile, at: nil, completionHandler: nil)
-        super.play()
-    }
+
     
 //    func pause() {
 //        disconnectVolumeTap()

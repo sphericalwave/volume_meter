@@ -13,6 +13,7 @@
 		3F600C6E1FA1DC620051FB21 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F600C6D1FA1DC620051FB21 /* MainScreen.swift */; };
 		3F600C761FA1DC620051FB21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F600C741FA1DC620051FB21 /* LaunchScreen.storyboard */; };
 		AF2887EF24102D6B002F06D4 /* MainScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2887EE24102D6B002F06D4 /* MainScreen.xib */; };
+		AF412D6D24117548007A61C8 /* Notficiations+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF412D6C24117548007A61C8 /* Notficiations+Extension.swift */; };
 		AF74447D2410952100587257 /* AudioSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74447C2410952100587257 /* AudioSource.swift */; };
 		AF74447F2410961E00587257 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74447E2410961E00587257 /* AudioEngine.swift */; };
 		AF7444812410964A00587257 /* AudioRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444802410964A00587257 /* AudioRate.swift */; };
@@ -39,6 +40,7 @@
 		3F600C751FA1DC620051FB21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F600C771FA1DC620051FB21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF2887EE24102D6B002F06D4 /* MainScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreen.xib; sourceTree = "<group>"; };
+		AF412D6C24117548007A61C8 /* Notficiations+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notficiations+Extension.swift"; sourceTree = "<group>"; };
 		AF74447C2410952100587257 /* AudioSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSource.swift; sourceTree = "<group>"; };
 		AF74447E2410961E00587257 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		AF7444802410964A00587257 /* AudioRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				AF74447C2410952100587257 /* AudioSource.swift */,
 				AF7444802410964A00587257 /* AudioRate.swift */,
 				AF74447E2410961E00587257 /* AudioEngine.swift */,
+				AF412D6C24117548007A61C8 /* Notficiations+Extension.swift */,
 				AF7444952410A36C00587257 /* TimeConstants.swift */,
 				AF7444972410A5B500587257 /* AudioBuffer.swift */,
 			);
@@ -239,6 +242,7 @@
 			files = (
 				AF744489241099DF00587257 /* PauseButton.swift in Sources */,
 				AF74447F2410961E00587257 /* AudioEngine.swift in Sources */,
+				AF412D6D24117548007A61C8 /* Notficiations+Extension.swift in Sources */,
 				AF7444832410976100587257 /* RateUI.swift in Sources */,
 				3F600C6E1FA1DC620051FB21 /* MainScreen.swift in Sources */,
 				AF7444852410979B00587257 /* ProgressUI.swift in Sources */,

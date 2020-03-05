@@ -14,15 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     //window?.rootViewController = MainScreen()
     
-    let vuMeter = VUMeter()
-    
     guard let url = Bundle.main.url(forResource: "Intro", withExtension: "mp4") else { fatalError() }
     do {
       let audioFile = try AVAudioFile(forReading: url)
       let codec = audioFile.processingFormat
       let audioSource = AudioSource(audioFile: audioFile)
       let audioRate = AudioRate()
-      let audioEngine = AudioEngine(player: audioSource, rateEffect: audioRate, codec: codec)
+      let vuMeter = VUMeter()
+      let audioEngine = AudioEngine(player: audioSource, rateEffect: audioRate, codec: codec, vuMeter: vuMeter)
+      //audioEngine.delegate = vuMeter
       window?.rootViewController = TestScreen(volumeMeter: vuMeter, audioSource: audioSource, audioEngine: audioEngine) //MainScreen()
     }
     catch { print(error) }

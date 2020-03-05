@@ -31,6 +31,7 @@ class TestScreen: UIViewController
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         volumeMeter.frame = volumeMeterContainer.bounds
+        volumeMeter.maxHeight = volumeMeterContainer.bounds.height  //FIXME: Encapsulation, Be Immutable
         audioSource.play()
     }
 }
