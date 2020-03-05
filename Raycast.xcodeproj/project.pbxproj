@@ -23,6 +23,8 @@
 		AF74448D24109D2D00587257 /* Progress.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF74448C24109D2D00587257 /* Progress.xib */; };
 		AF74449124109D4F00587257 /* Buttons.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF74449024109D4F00587257 /* Buttons.xib */; };
 		AF74449324109D8400587257 /* RateUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF74449224109D8400587257 /* RateUI.xib */; };
+		AF7444962410A36C00587257 /* TimeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444952410A36C00587257 /* TimeConstants.swift */; };
+		AF7444982410A5B500587257 /* AudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444972410A5B500587257 /* AudioBuffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		AF74448C24109D2D00587257 /* Progress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Progress.xib; sourceTree = "<group>"; };
 		AF74449024109D4F00587257 /* Buttons.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Buttons.xib; sourceTree = "<group>"; };
 		AF74449224109D8400587257 /* RateUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateUI.xib; sourceTree = "<group>"; };
+		AF7444952410A36C00587257 /* TimeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConstants.swift; sourceTree = "<group>"; };
+		AF7444972410A5B500587257 /* AudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBuffer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 				AF74447C2410952100587257 /* AudioSource.swift */,
 				AF7444802410964A00587257 /* AudioRate.swift */,
 				AF74447E2410961E00587257 /* AudioEngine.swift */,
+				AF7444952410A36C00587257 /* TimeConstants.swift */,
+				AF7444972410A5B500587257 /* AudioBuffer.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -218,7 +224,9 @@
 				AF7444832410976100587257 /* RateUI.swift in Sources */,
 				3F600C6E1FA1DC620051FB21 /* MainScreen.swift in Sources */,
 				AF7444852410979B00587257 /* ProgressUI.swift in Sources */,
+				AF7444982410A5B500587257 /* AudioBuffer.swift in Sources */,
 				AF7444812410964A00587257 /* AudioRate.swift in Sources */,
+				AF7444962410A36C00587257 /* TimeConstants.swift in Sources */,
 				3F600C6C1FA1DC620051FB21 /* AppDelegate.swift in Sources */,
 				AF74447D2410952100587257 /* AudioSource.swift in Sources */,
 				AF744487241097EE00587257 /* ButtonsUI.swift in Sources */,
@@ -358,6 +366,7 @@
 				DEVELOPMENT_TEAM = "";
 				IBSC_WARNINGS = YES;
 				INFOPLIST_FILE = Raycast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Raycast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -374,6 +383,7 @@
 				DEVELOPMENT_TEAM = "";
 				IBSC_WARNINGS = YES;
 				INFOPLIST_FILE = Raycast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Raycast;
 				PRODUCT_NAME = "$(TARGET_NAME)";

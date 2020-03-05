@@ -11,6 +11,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
+//    let displayLink = CADisplayLink(target: self, selector: #selector(updateUI))
+//    let displayLink = CADisplayLink(target: self, selector: #selector(updateUI))
+//    displayLink.add(to: .current, forMode: .defaultRunLoopMode)
+//    displayLink.isPaused = true
     window?.rootViewController = MainScreen()
     
     return true

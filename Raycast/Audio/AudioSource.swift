@@ -8,54 +8,44 @@
 
 import AVFoundation
 
-class AudioSource
+class AudioSource: AVAudioPlayerNode
 {
-    // MARK: AVAudio properties
-    var engine = AVAudioEngine()
-    var player = AVAudioPlayerNode()
-    var rateEffect = AVAudioUnitTimePitch()
-    
-    var audioFile: AVAudioFile? {
-        didSet {
-            if let audioFile = audioFile {
-                audioLengthSamples = audioFile.length
-                audioFormat = audioFile.processingFormat
-                audioSampleRate = Float(audioFormat?.sampleRate ?? 44100)
-                audioLengthSeconds = Float(audioLengthSamples) / audioSampleRate
-            }
-        }
-    }
-    var audioFileURL: URL? {
-        didSet {
-            if let audioFileURL = audioFileURL {
-                audioFile = try? AVAudioFile(forReading: audioFileURL)
-            }
-        }
-    }
-    var audioBuffer: AVAudioPCMBuffer?
-    
-    // MARK: other properties
-    var audioFormat: AVAudioFormat?
-    var audioSampleRate: Float = 0
+    //var engine = AVAudioEngine()
+    //var player = AVAudioPlayerNode()
+    //let displayLink: CADisplayLink
+    //var audioBuffer: AVAudioPCMBuffer?
+    var codec: AVAudioFormat?
+    var sampleRate: Float = 0
     var audioLengthSeconds: Float = 0
-    var audioLengthSamples: AVAudioFramePosition = 0
+    var currentFrame: AVAudioFramePosition = 0
     var needsFileScheduled = true
     
-    var currentFrame: AVAudioFramePosition {
-        guard let lastRenderTime = player.lastRenderTime,
-            let playerTime = player.playerTime(forNodeTime: lastRenderTime) else {
+    var totalFrames: AVAudioFramePosition {
+        guard let lastRenderTime = self.lastRenderTime,
+            let playerTime = self.playerTime(forNodeTime: lastRenderTime) else {
                 return 0
         }
-        
         return playerTime.sampleTime
     }
     var seekFrame: AVAudioFramePosition = 0
     var currentPosition: AVAudioFramePosition = 0
     let minDb: Float = -80.0
     
-    enum TimeConstant {
-        static let secsPerMin = 60
-        static let secsPerHour = TimeConstant.secsPerMin * 60
+//    init(displayLink: CADisplayLink) {
+//        self.displayLink = displayLink
+//        super.init()
+//    }
+    
+    func load(audioFileURL: URL) {
+        guard let audioFile = try? AVAudioFile(forReading: audioFileURL) else { fatalError() }
+        currentFrame = audioFile.length  //FIXME: QUestionable
+        codec = audioFile.processingFormat
+        sampleRate = Float(codec?.sampleRate ?? 44100)
+        audioLengthSeconds = Float(currentFrame) / sampleRate
+        seekFrame = 0
+        self.scheduleFile(audioFile, at: nil) { [weak self] in
+            self?.needsFileScheduled = true
+        }
     }
     
     //FIXME: - Request Current Time
@@ -86,99 +76,58 @@ class AudioSource
 
 // MARK: - Audio
 //
-    func setupAudio() {
-        audioFileURL  = Bundle.main.url(forResource: "Intro", withExtension: "mp4")
-        
-        engine.attach(player)
-        engine.attach(rateEffect)
-        engine.connect(player, to: rateEffect, format: audioFormat)
-        engine.connect(rateEffect, to: engine.mainMixerNode, format: audioFormat)
-        
-        engine.prepare()
-        
-        do {
-            try engine.start()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
+//    func setupAudio() {
+//        audioFileURL  = Bundle.main.url(forResource: "Intro", withExtension: "mp4")
+//        
+//        
+////        //Engine Cons
+////        engine.attach(player)
+////        engine.attach(rateEffect)
+////        engine.connect(player, to: rateEffect, format: codec)
+////        engine.connect(rateEffect, to: engine.mainMixerNode, format: codec)
+////        engine.prepare()
+////        do { try engine.start() }
+////        catch { print(error.localizedDescription) }
+//    }
     
-    func scheduleAudioFile() {
-        guard let audioFile = audioFile else { return }
-        
-        seekFrame = 0
-        player.scheduleFile(audioFile, at: nil) { [weak self] in
-            self?.needsFileScheduled = true
-        }
-    }
-    
-    func connectVolumeTap() {
-        let format = engine.mainMixerNode.outputFormat(forBus: 0)
-        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, when in
-            
-            guard let channelData = buffer.floatChannelData,
-                let displayLink = self.displayLink else {
-                    return
-            }
-            
-            let channelDataValue = channelData.pointee
-            let channelDataValueArray = stride(from: 0,
-                                               to: Int(buffer.frameLength),
-                                               by: buffer.stride).map{ channelDataValue[$0] }
-            let red = channelDataValueArray.map{ $0 * $0 }.reduce(0, +)
-            let rms = sqrt(red / Float(buffer.frameLength))
-            let avgPower = 20 * log10(rms)
-            let meterLevel = self.scaledPower(power: avgPower)
-            
-            DispatchQueue.main.async {
-                self.volumeMeterHeight.constant = !displayLink.isPaused ? CGFloat(min((meterLevel * self.pauseImageHeight),
-                                                                                  self.pauseImageHeight)) : 0.0
-            }
-        }
-    }
+//    func scheduleAudioFile() {
+//        //guard let audioFile = audioFile else { return }
+//        seekFrame = 0
+//        self.scheduleFile(audioFile, at: nil) { [weak self] in
+//            self?.needsFileScheduled = true
+//        }
+//    }
     
     func scaledPower(power: Float) -> Float {
         guard power.isFinite else { return 0.0 }
-        
-        if power < minDb {
-            return 0.0
-        } else if power >= 1.0 {
-            return 1.0
-        } else {
-            return (fabs(minDb) - fabs(power)) / fabs(minDb)
-        }
-    }
-    
-    func disconnectVolumeTap() {
-        engine.mainMixerNode.removeTap(onBus: 0)
-        volumeMeterHeight.constant = 0
+        if power < minDb { return 0.0 }
+        else if power >= 1.0 { return 1.0 }
+        else { return (fabs(minDb) - fabs(power)) / fabs(minDb) }
     }
     
     func seek(to time: Float) {
-        guard let audioFile = audioFile,
-            let displayLink = displayLink else {
-                return
-        }
-        
-        seekFrame = currentPosition + AVAudioFramePosition(time * audioSampleRate)
-        seekFrame = max(seekFrame, 0)
-        seekFrame = min(seekFrame, audioLengthSamples)
-        currentPosition = seekFrame
-        
-        player.stop()
-        
-        if currentPosition < audioLengthSamples {
-            updateUI()
-            needsFileScheduled = false
-            
-            player.scheduleSegment(audioFile, startingFrame: seekFrame, frameCount: AVAudioFrameCount(audioLengthSamples - seekFrame), at: nil) { [weak self] in
-                self?.needsFileScheduled = true
-            }
-            
-            if !displayLink.isPaused {
-                player.play()
-            }
-        }
+//        //guard let audioFile = audioFile /*,let displayLink = displayLink*/ else { return }
+//
+//        seekFrame = currentPosition + AVAudioFramePosition(time * sampleRate)
+//        seekFrame = max(seekFrame, 0)
+//        seekFrame = min(seekFrame, currentFrame)
+//        currentPosition = seekFrame
+//
+//        self.stop()
+//
+//        if currentPosition < currentFrame {
+//            updateUI()
+//            needsFileScheduled = false
+//            let frameCount = AVAudioFrameCount(currentFrame - seekFrame)
+//            self.scheduleSegment(audioFile, startingFrame: seekFrame, frameCount: frameCount, at: nil) { [weak self] in
+//                self?.needsFileScheduled = true
+//            }
+//            if !displayLink.isPaused { self.play() }
+//        }
+    }
+    
+    func updateUI() {
+        //FIXME: Update UIs maybe
     }
     
 }

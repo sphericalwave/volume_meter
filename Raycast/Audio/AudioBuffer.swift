@@ -1,5 +1,5 @@
 //
-//  AudioRate.swift
+//  AudioBuffer.swift
 //  Raycast
 //
 //  Created by Aaron Anthony on 2020-03-04.
@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-class AudioRate: AVAudioUnitTimePitch
+class AudioBuffer: AVAudioPCMBuffer
 {
-    //var rateEffect = AVAudioUnitTimePitch()
+    
 }
