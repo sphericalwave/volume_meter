@@ -13,6 +13,13 @@
 		3F600C6E1FA1DC620051FB21 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F600C6D1FA1DC620051FB21 /* MainScreen.swift */; };
 		3F600C761FA1DC620051FB21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F600C741FA1DC620051FB21 /* LaunchScreen.storyboard */; };
 		AF2887EF24102D6B002F06D4 /* MainScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2887EE24102D6B002F06D4 /* MainScreen.xib */; };
+		AF74447D2410952100587257 /* AudioSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74447C2410952100587257 /* AudioSource.swift */; };
+		AF74447F2410961E00587257 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74447E2410961E00587257 /* AudioEngine.swift */; };
+		AF7444812410964A00587257 /* AudioRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444802410964A00587257 /* AudioRate.swift */; };
+		AF7444832410976100587257 /* RateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444822410976100587257 /* RateUI.swift */; };
+		AF7444852410979B00587257 /* ProgressUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444842410979B00587257 /* ProgressUI.swift */; };
+		AF744487241097EE00587257 /* ButtonsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF744486241097EE00587257 /* ButtonsUI.swift */; };
+		AF744489241099DF00587257 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF744488241099DF00587257 /* PauseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		3F600C751FA1DC620051FB21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F600C771FA1DC620051FB21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF2887EE24102D6B002F06D4 /* MainScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreen.xib; sourceTree = "<group>"; };
+		AF74447C2410952100587257 /* AudioSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSource.swift; sourceTree = "<group>"; };
+		AF74447E2410961E00587257 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		AF7444802410964A00587257 /* AudioRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRate.swift; sourceTree = "<group>"; };
+		AF7444822410976100587257 /* RateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUI.swift; sourceTree = "<group>"; };
+		AF7444842410979B00587257 /* ProgressUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressUI.swift; sourceTree = "<group>"; };
+		AF744486241097EE00587257 /* ButtonsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsUI.swift; sourceTree = "<group>"; };
+		AF744488241099DF00587257 /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +76,13 @@
 				01A2AB631FDD6DCC0083D8E1 /* Intro.mp4 */,
 				3F600C741FA1DC620051FB21 /* LaunchScreen.storyboard */,
 				3F600C6D1FA1DC620051FB21 /* MainScreen.swift */,
+				AF744486241097EE00587257 /* ButtonsUI.swift */,
+				AF744488241099DF00587257 /* PauseButton.swift */,
+				AF7444842410979B00587257 /* ProgressUI.swift */,
+				AF7444822410976100587257 /* RateUI.swift */,
+				AF74447C2410952100587257 /* AudioSource.swift */,
+				AF7444802410964A00587257 /* AudioRate.swift */,
+				AF74447E2410961E00587257 /* AudioEngine.swift */,
 				AF2887EE24102D6B002F06D4 /* MainScreen.xib */,
 			);
 			path = Raycast;
@@ -140,8 +161,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF744489241099DF00587257 /* PauseButton.swift in Sources */,
+				AF74447F2410961E00587257 /* AudioEngine.swift in Sources */,
+				AF7444832410976100587257 /* RateUI.swift in Sources */,
 				3F600C6E1FA1DC620051FB21 /* MainScreen.swift in Sources */,
+				AF7444852410979B00587257 /* ProgressUI.swift in Sources */,
+				AF7444812410964A00587257 /* AudioRate.swift in Sources */,
 				3F600C6C1FA1DC620051FB21 /* AppDelegate.swift in Sources */,
+				AF74447D2410952100587257 /* AudioSource.swift in Sources */,
+				AF744487241097EE00587257 /* ButtonsUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
