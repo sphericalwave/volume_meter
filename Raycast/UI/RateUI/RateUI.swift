@@ -6,7 +6,7 @@
 //  Copyright © 2020 Razeware. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - Display related
 //
@@ -27,6 +27,7 @@ class RateUI
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRateSlider()
+        updateRateLabel()
     }
     
     func setupRateSlider() {

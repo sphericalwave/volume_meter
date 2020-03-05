@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WRy-PZ-I4p">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YjC-P8-JB9" userLabel="Playback Progress">
+                    <rect key="frame" x="9" y="9" width="396" height="64"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="uSL-rU-jL2">
+                            <rect key="frame" x="0.0" y="0.0" width="396" height="29"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzj-Xy-E5J">
+                                    <rect key="frame" x="0.0" y="0.0" width="396" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2a-wf-Ynj">
+                            <rect key="frame" x="-2" y="34" width="400" height="31"/>
+                            <color key="minimumTrackTintColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="maximumTrackTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </slider>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="qSj-Rr-BWa" firstAttribute="bottom" secondItem="YjC-P8-JB9" secondAttribute="bottom" constant="9" id="DzG-Qk-SUT"/>
+                <constraint firstItem="qSj-Rr-BWa" firstAttribute="trailing" secondItem="YjC-P8-JB9" secondAttribute="trailing" constant="9" id="Mzx-6p-kq1"/>
+                <constraint firstItem="YjC-P8-JB9" firstAttribute="leading" secondItem="qSj-Rr-BWa" secondAttribute="leading" constant="9" id="YxX-nr-bh0"/>
+                <constraint firstItem="YjC-P8-JB9" firstAttribute="top" secondItem="WRy-PZ-I4p" secondAttribute="top" constant="9" id="tzP-mC-4yu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="qSj-Rr-BWa"/>
+            <point key="canvasLocation" x="-43.478260869565219" y="104.12946428571428"/>
+        </view>
+    </objects>
+</document>
