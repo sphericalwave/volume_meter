@@ -10,29 +10,27 @@ import AVFoundation
 
 class AudioEngine: AVAudioEngine
 {
-    let player: AVAudioPlayerNode
-    let rateEffect: AVAudioUnitTimePitch
+    let player: AudioSource
+    let rateEffect: AudioRate
     
-    init(player: AVAudioPlayerNode, rateEffect: AVAudioUnitTimePitch, codec: AVAudioFormat) {
+    init(player: AudioSource, rateEffect: AudioRate, codec: AVAudioFormat) {
         self.player = player
         self.rateEffect = rateEffect
         super.init()
-        self.attach(player)
-        self.attach(rateEffect)
-        self.connect(player, to: rateEffect, format: codec)
-        self.connect(rateEffect, to: self.mainMixerNode, format: codec)
-        self.prepare()
-        do { try self.start() }
+        attach(player)
+        //attach(rateEffect)
+        //connect(player, to: rateEffect, format: codec)
+        //connect(rateEffect, to: mainMixerNode, format: codec) //FIXME: Rate Effect
+        connect(player, to: mainMixerNode, format: codec)
+        prepare()
+        do { try start() }
         catch { print(error.localizedDescription) }
     }
     
     func connectVolumeTap() {
-        let format = self.mainMixerNode.outputFormat(forBus: 0)
-        self.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, when in
-            
-            guard let channelData = buffer.floatChannelData /*,
-                 //FIXME: let displayLink = self.displayLink*/ else { return }
-            
+        let format = mainMixerNode.outputFormat(forBus: 0)
+        mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, when in
+            guard let channelData = buffer.floatChannelData else { return }
             let channelDataValue = channelData.pointee
             let channelDataValueArray = stride(from: 0, to: Int(buffer.frameLength), by: buffer.stride).map{ channelDataValue[$0] }
             let red = channelDataValueArray.map{ $0 * $0 }.reduce(0, +)
@@ -48,7 +46,7 @@ class AudioEngine: AVAudioEngine
     }
     
     func disconnectVolumeTap() {
-        self.mainMixerNode.removeTap(onBus: 0)
+        mainMixerNode.removeTap(onBus: 0)
         //FIXME: volumeMeterHeight.constant = 0
     }
 }

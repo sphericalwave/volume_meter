@@ -25,6 +25,9 @@
 		AF74449324109D8400587257 /* RateUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF74449224109D8400587257 /* RateUI.xib */; };
 		AF7444962410A36C00587257 /* TimeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444952410A36C00587257 /* TimeConstants.swift */; };
 		AF7444982410A5B500587257 /* AudioBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444972410A5B500587257 /* AudioBuffer.swift */; };
+		AF74449A2410B40500587257 /* VUMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7444992410B40400587257 /* VUMeter.swift */; };
+		AF74449C24115C0C00587257 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74449B24115C0C00587257 /* TestScreen.swift */; };
+		AF74449E24115C8A00587257 /* TestScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF74449D24115C8A00587257 /* TestScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		AF74449224109D8400587257 /* RateUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateUI.xib; sourceTree = "<group>"; };
 		AF7444952410A36C00587257 /* TimeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConstants.swift; sourceTree = "<group>"; };
 		AF7444972410A5B500587257 /* AudioBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBuffer.swift; sourceTree = "<group>"; };
+		AF7444992410B40400587257 /* VUMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUMeter.swift; sourceTree = "<group>"; };
+		AF74449B24115C0C00587257 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
+		AF74449D24115C8A00587257 /* TestScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 				3F600C771FA1DC620051FB21 /* Info.plist */,
 				01A2AB631FDD6DCC0083D8E1 /* Intro.mp4 */,
 				3F600C741FA1DC620051FB21 /* LaunchScreen.storyboard */,
+				AF74449F24115E6400587257 /* TestScreen */,
 				AF74448B24109CBA00587257 /* UI */,
 				AF74448A24109CA800587257 /* Audio */,
 			);
@@ -130,6 +137,7 @@
 				AF744486241097EE00587257 /* ButtonsUI.swift */,
 				AF74449024109D4F00587257 /* Buttons.xib */,
 				AF744488241099DF00587257 /* PauseButton.swift */,
+				AF7444992410B40400587257 /* VUMeter.swift */,
 			);
 			path = ButtonsUI;
 			sourceTree = "<group>";
@@ -141,6 +149,15 @@
 				AF74449224109D8400587257 /* RateUI.xib */,
 			);
 			path = RateUI;
+			sourceTree = "<group>";
+		};
+		AF74449F24115E6400587257 /* TestScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AF74449B24115C0C00587257 /* TestScreen.swift */,
+				AF74449D24115C8A00587257 /* TestScreen.xib */,
+			);
+			path = TestScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +226,7 @@
 				AF2887EF24102D6B002F06D4 /* MainScreen.xib in Resources */,
 				AF74448D24109D2D00587257 /* Progress.xib in Resources */,
 				3F600C761FA1DC620051FB21 /* LaunchScreen.storyboard in Resources */,
+				AF74449E24115C8A00587257 /* TestScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +245,8 @@
 				AF7444982410A5B500587257 /* AudioBuffer.swift in Sources */,
 				AF7444812410964A00587257 /* AudioRate.swift in Sources */,
 				AF7444962410A36C00587257 /* TimeConstants.swift in Sources */,
+				AF74449A2410B40500587257 /* VUMeter.swift in Sources */,
+				AF74449C24115C0C00587257 /* TestScreen.swift in Sources */,
 				3F600C6C1FA1DC620051FB21 /* AppDelegate.swift in Sources */,
 				AF74447D2410952100587257 /* AudioSource.swift in Sources */,
 				AF744487241097EE00587257 /* ButtonsUI.swift in Sources */,

@@ -1,6 +1,7 @@
 
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,12 +12,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
-//    let displayLink = CADisplayLink(target: self, selector: #selector(updateUI))
-//    let displayLink = CADisplayLink(target: self, selector: #selector(updateUI))
-//    displayLink.add(to: .current, forMode: .defaultRunLoopMode)
-//    displayLink.isPaused = true
-    window?.rootViewController = MainScreen()
+    //window?.rootViewController = MainScreen()
     
+    let vuMeter = VUMeter()
+    
+    guard let url = Bundle.main.url(forResource: "Intro", withExtension: "mp4") else { fatalError() }
+    do {
+      let audioFile = try AVAudioFile(forReading: url)
+      let codec = audioFile.processingFormat
+      let audioSource = AudioSource(audioFile: audioFile)
+      let audioRate = AudioRate()
+      let audioEngine = AudioEngine(player: audioSource, rateEffect: audioRate, codec: codec)
+      window?.rootViewController = TestScreen(volumeMeter: vuMeter, audioSource: audioSource, audioEngine: audioEngine) //MainScreen()
+    }
+    catch { print(error) }
+
     return true
   }
 }
