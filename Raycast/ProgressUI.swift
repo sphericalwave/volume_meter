@@ -34,7 +34,7 @@ class ProgressUI
         
         if currentPosition >= audioLengthSamples {
             player.stop()
-            updater?.isPaused = true
+            displayLink?.isPaused = true
             playPauseButton.isSelected = false
             disconnectVolumeTap()
         }

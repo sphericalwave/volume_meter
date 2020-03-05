@@ -117,7 +117,7 @@ class AudioSource
         engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, when in
             
             guard let channelData = buffer.floatChannelData,
-                let updater = self.updater else {
+                let displayLink = self.displayLink else {
                     return
             }
             
@@ -131,7 +131,7 @@ class AudioSource
             let meterLevel = self.scaledPower(power: avgPower)
             
             DispatchQueue.main.async {
-                self.volumeMeterHeight.constant = !updater.isPaused ? CGFloat(min((meterLevel * self.pauseImageHeight),
+                self.volumeMeterHeight.constant = !displayLink.isPaused ? CGFloat(min((meterLevel * self.pauseImageHeight),
                                                                                   self.pauseImageHeight)) : 0.0
             }
         }
@@ -156,7 +156,7 @@ class AudioSource
     
     func seek(to time: Float) {
         guard let audioFile = audioFile,
-            let updater = updater else {
+            let displayLink = displayLink else {
                 return
         }
         
@@ -175,7 +175,7 @@ class AudioSource
                 self?.needsFileScheduled = true
             }
             
-            if !updater.isPaused {
+            if !displayLink.isPaused {
                 player.play()
             }
         }

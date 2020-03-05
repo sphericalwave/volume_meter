@@ -23,10 +23,10 @@ class ButtonsUI
         
         if player.isPlaying {
             disconnectVolumeTap()
-            updater?.isPaused = true
+            displayLink?.isPaused = true
             player.pause()
         } else {
-            updater?.isPaused = false
+            displayLink?.isPaused = false
             connectVolumeTap()
             if needsFileScheduled {
                 needsFileScheduled = false

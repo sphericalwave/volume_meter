@@ -4,9 +4,9 @@ import UIKit
 
 class MainScreen: UIViewController
 {
-    var updater: CADisplayLink?  //timer
+    var displayLink: CADisplayLink?  //timer
 
-    init() {
+    init(displayLink: CADisplayLink) {
         super.init(nibName: "MainScreen", bundle: nil)
     }
     required init?(coder: NSCoder) { fatalError("Stop Collaborate and Listen")}
@@ -14,9 +14,9 @@ class MainScreen: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updater = CADisplayLink(target: self, selector: #selector(updateUI))
-        updater?.add(to: .current, forMode: .defaultRunLoopMode)
-        updater?.isPaused = true
+        displayLink = CADisplayLink(target: self, selector: #selector(updateUI))
+        displayLink?.add(to: .current, forMode: .defaultRunLoopMode)
+        displayLink?.isPaused = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
